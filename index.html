@@ -754,7 +754,7 @@ html.soon .has-bar .demo-back{transform:none}
   var form = { n: '', c: '', t: '' };
   function msg() {
     var t = totals(), L = ['Merhaba ' + BRAND + ', sitenizden sipariş vermek istiyorum:', ''];
-    cart.forEach(function (i, k) { var x = byId[i.id]; L.push((k + 1) + ') ' + x.n + (x.k ? ' [' + x.k + ']' : '') + ' – ' + label(i) + ' × ' + i.q + ' = ' + tl(x.p * i.q)); });
+    cart.forEach(function (i, k) { var x = byId[i.id]; L.push((k + 1) + ') ' + x.n + ' – ' + label(i) + ' × ' + i.q + ' = ' + tl(x.p * i.q)); });
     L.push('', 'Ara toplam: ' + tl(t.sub), 'Kargo: sipariş onayında bildirilsin', 'Toplam: ' + tl(t.tot));
     if (form.n) L.push('', 'Ad Soyad: ' + form.n);
     if (form.c) L.push((form.n ? '' : '\n') + 'İl / İlçe: ' + form.c);
@@ -810,12 +810,12 @@ html.soon .has-bar .demo-back{transform:none}
     $('#dPrice').textContent = SOON ? 'Yakında' : tl(cur.p);
     $('#dAdd').textContent = SOON ? 'Çıkınca haber ver' : 'Sepete ekle · ' + tl(cur.p * dq);
     $('#dMetal').querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-m') === dm); });
-    $('#dAsk').href = waUrl('Merhaba ' + BRAND + ', "' + cur.n + (cur.k ? ' [' + cur.k + ']' : '') + ' (' + (cur.nm ? 'ürün' : MET[dm].n) + (cur.letter ? ', harf: ' + dl : '') + ')" hakkında bilgi almak istiyorum. Stokta var mı?');
+    $('#dAsk').href = waUrl('Merhaba ' + BRAND + ', "' + cur.n + ' (' + (cur.nm ? 'ürün' : MET[dm].n) + (cur.letter ? ', harf: ' + dl : '') + ')" hakkında bilgi almak istiyorum. Stokta var mı?');
     $('#dAsk').target = '_blank'; $('#dAsk').rel = 'noopener';
   }
   function openDetail(id) {
     cur = byId[id]; dm = cur.m[0]; dq = 1; dl = $('#dLetter').value || 'E';
-    $('#dName').textContent = cur.n; $('#dDesc').textContent = cur.d; $('#dMat').textContent = (cur.mat || MAT) + (cur.k ? ' · Ürün kodu: ' + cur.k : '');
+    $('#dName').textContent = cur.n; $('#dDesc').textContent = cur.d; $('#dMat').textContent = cur.mat || MAT;
     $('#dMetal').innerHTML = cur.m.map(function (m) { var c = MET[m].c; return '<button type="button" data-m="' + m + '"><i style="background:linear-gradient(135deg,' + c[0] + ',' + c[1] + ' 45%,' + c[2] + ')"></i>' + MET[m].n + '</button>'; }).join('');
     $('#dMetalWrap').hidden = cur.m.length < 2;
     $('#dLetterWrap').hidden = !cur.letter;
