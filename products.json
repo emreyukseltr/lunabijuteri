@@ -1,0 +1,409 @@
+[
+ {
+  "id": "papatya",
+  "n": "Papatyalı Hal Hal",
+  "c": "halhal",
+  "p": 250,
+  "img": "papatyali-inci-bileklik-halhal.jpg",
+  "nm": 1,
+  "m": [
+   "gold"
+  ],
+  "d": "İnci ve altın renk boncuklar, ortasında küçük papatya. Uzatma zincirli; ayak bileğinde ya da bilekte kullanabilirsiniz.",
+  "k": "ELK0018PHH",
+  "b": "Çok sevilen",
+  "hot": 1,
+  "sold": false
+ },
+ {
+  "id": "turuncu-kelebek",
+  "n": "Turuncu Boncuklu Kelebek Hal Hal",
+  "c": "halhal",
+  "p": 250,
+  "img": "turuncu-kelebek-halhal.jpg",
+  "nm": 1,
+  "m": [
+   "gold"
+  ],
+  "d": "Turuncu boncuklar ve ortasında altın renk kelebek. Uzatma zincirli hal hal.",
+  "k": "ELK0020TBKHH",
+  "sold": false
+ },
+ {
+  "id": "turkuaz-kelebek",
+  "n": "Turkuaz Kelebek Detaylı Hal Hal",
+  "c": "halhal",
+  "p": 250,
+  "img": "turkuaz-kelebek-halhal.jpg",
+  "nm": 1,
+  "m": [
+   "gold"
+  ],
+  "d": "Turkuaz boncuklar ve ortasında kelebek detay. Uzatma zincirli hal hal.",
+  "k": "ELK0017TKDHH",
+  "sold": false
+ },
+ {
+  "id": "kirmizi-beyaz",
+  "n": "Kırmızı ve Beyaz Boncuklu Hal Hal",
+  "c": "halhal",
+  "p": 250,
+  "img": "kirmizi-beyaz-halhal.jpg",
+  "nm": 1,
+  "m": [
+   "silver"
+  ],
+  "d": "Kırmızı ve beyaz boncuklar sırayla dizili, uzatma zincirli hal hal.",
+  "k": "ELK0016KBBHH",
+  "sold": false
+ },
+ {
+  "id": "kalpli",
+  "n": "Kalpli Altın Görünümlü Küpe",
+  "c": "kupe",
+  "p": 200,
+  "img": "kalpli-kupe.jpg",
+  "nm": 1,
+  "m": [
+   "gold"
+  ],
+  "d": "Altın renk küçük kalp, altın renk kancalı sallantılı küpe. Fiyat çift içindir.",
+  "k": "ELK003KK",
+  "sold": false
+ },
+ {
+  "id": "petrol",
+  "n": "Koyu Yeşil Damla Küpe",
+  "c": "kupe",
+  "p": 200,
+  "img": "koyu-yesil-damla-kupe.jpg",
+  "nm": 1,
+  "m": [
+   "gold"
+  ],
+  "d": "Koyu yeşil boncuklardan damla şeklinde, altın renk kancalı küpe. Fiyat çift içindir.",
+  "k": "ELK005KYDK",
+  "sold": false
+ },
+ {
+  "id": "inci-mavi",
+  "n": "İnci ve Açık Mavi Halka Küpe",
+  "c": "kupe",
+  "p": 200,
+  "img": "inci-acik-mavi-halka-kupe.jpg",
+  "nm": 1,
+  "m": [
+   "silver"
+  ],
+  "d": "İnci ve açık mavi boncuklardan halka küpe, gümüş renk kancalı. Fiyat çift içindir.",
+  "k": "ELK006İAMHK",
+  "sold": false
+ },
+ {
+  "id": "yesil-beyaz-uzun",
+  "n": "Yeşil Beyaz Uzun Küpe",
+  "c": "kupe",
+  "p": 200,
+  "img": "yesil-beyaz-uzun-kupe.jpg",
+  "nm": 1,
+  "m": [
+   "silver"
+  ],
+  "d": "Fıstık yeşili boncuklar ve beyaz ara pullardan uzun sallantılı küpe, gümüş renk kancalı. Fiyat çift içindir.",
+  "k": "ELK008YBUK",
+  "sold": false
+ },
+ {
+  "id": "yesil-kirmizi",
+  "n": "Koyu Yeşil ve Kırmızı Küpe",
+  "c": "kupe",
+  "p": 200,
+  "img": "koyu-yesil-kirmizi-kupe.jpg",
+  "nm": 1,
+  "m": [
+   "gold"
+  ],
+  "d": "Koyu yeşil ve kırmızı boncuklardan halka küpe, altın renk kancalı. Fiyat çift içindir.",
+  "k": "ELK0010YPHK",
+  "sold": false
+ },
+ {
+  "id": "mor-pembe",
+  "n": "Şeffaf Mor ve Pembe Küpe",
+  "c": "kupe",
+  "p": 200,
+  "img": "seffaf-mor-pembe-kupe.jpg",
+  "nm": 1,
+  "m": [
+   "silver"
+  ],
+  "d": "Şeffaf mor ve pembe boncuklardan halka küpe, gümüş renk kancalı. Fiyat çift içindir.",
+  "k": "ELK0011ŞMPK",
+  "sold": false
+ },
+ {
+  "id": "mor-beyaz",
+  "n": "Şeffaf Mor ve Beyaz Küpe",
+  "c": "kupe",
+  "p": 200,
+  "img": "seffaf-mor-beyaz-kupe.jpg",
+  "nm": 1,
+  "m": [
+   "gold"
+  ],
+  "d": "Şeffaf mor ve beyaz boncuklardan damla küpe, altın renk kancalı. Fiyat çift içindir.",
+  "k": "ELK0012ŞMBK",
+  "sold": false
+ },
+ {
+  "id": "mavi-beyaz",
+  "n": "Mavi Beyaz Boncuklu Küpe",
+  "c": "kupe",
+  "p": 200,
+  "img": "mavi-beyaz-boncuk-kupe.jpg",
+  "nm": 1,
+  "m": [
+   "gold"
+  ],
+  "d": "Mavi ve beyaz boncuklardan minik halka küpe, altın renk kancalı. Fiyat çift içindir.",
+  "k": "ELK0028MBBK",
+  "sold": false
+ },
+ {
+  "id": "halka-kupe",
+  "n": "Yeşil Beyaz Halka Küpe",
+  "c": "kupe",
+  "p": 200,
+  "img": "yesil-beyaz-halka-kupe.jpg",
+  "nm": 1,
+  "m": [
+   "silver"
+  ],
+  "d": "Yeşil boncuklar ve beyaz ara pullardan büyük halka küpe, gümüş renk kancalı. Fiyat çift içindir.",
+  "k": "ELK0029YBHK",
+  "sold": false
+ },
+ {
+  "id": "damla-kupe",
+  "n": "Fuşya ve Mint Küpe",
+  "c": "kupe",
+  "p": 200,
+  "img": "fusya-mint-kupe.jpg",
+  "nm": 1,
+  "m": [
+   "gold"
+  ],
+  "d": "Fuşya ve mint boncuklardan damla küpe, altın renk kancalı. Fiyat çift içindir.",
+  "k": "ELK0030FMK",
+  "sold": false
+ },
+ {
+  "id": "fusya-yesil",
+  "n": "Fuşya Yeşil Halka Küpe",
+  "c": "kupe",
+  "p": 200,
+  "img": "fusya-yesil-halka-kupe.jpg",
+  "nm": 1,
+  "m": [
+   "gold"
+  ],
+  "d": "Fuşya ve yeşil boncuklardan halka küpe, altın renk kancalı. Fiyat çift içindir.",
+  "sold": false
+ },
+ {
+  "id": "sari-yesil",
+  "n": "Sarı Yeşil Halka Küpe",
+  "c": "kupe",
+  "p": 250,
+  "img": "sari-yesil-halka-kupe.jpg",
+  "nm": 1,
+  "m": [
+   "gold"
+  ],
+  "d": "Sarı ve koyu yeşil boncuklardan halka küpe, altın renk kancalı. Fiyat çift içindir.",
+  "sold": false
+ },
+ {
+  "id": "turuncu-yesil",
+  "n": "Turuncu Yeşil Küpe",
+  "c": "kupe",
+  "p": 200,
+  "img": "turuncu-yesil-kupe.jpg",
+  "nm": 1,
+  "m": [
+   "gold"
+  ],
+  "d": "Turuncu ve yeşil boncuklardan damla küpe, altın renk kancalı. Fiyat çift içindir.",
+  "k": "ELK0033TYK",
+  "sold": false
+ },
+ {
+  "id": "pembe-inci",
+  "n": "Pembe İnci Halka Küpe",
+  "c": "kupe",
+  "p": 200,
+  "img": "pembe-inci-halka-kupe.jpg",
+  "nm": 1,
+  "m": [
+   "silver"
+  ],
+  "d": "Pembe inci boncuklardan büyük halka küpe, gümüş renk kancalı. Fiyat çift içindir.",
+  "sold": false
+ },
+ {
+  "id": "fusya-gri",
+  "n": "Fuşya Gri İnci Halka Küpe",
+  "c": "kupe",
+  "p": 200,
+  "img": "fusya-gri-inci-halka-kupe.jpg",
+  "nm": 1,
+  "m": [
+   "gold"
+  ],
+  "d": "Fuşya ve gri inci boncuklardan büyük halka küpe, altın renk kancalı. Fiyat çift içindir.",
+  "sold": false
+ },
+ {
+  "id": "mor-kirmizi",
+  "n": "Mor ve Kırmızı Boncuklu Bileklik",
+  "c": "bileklik",
+  "p": 250,
+  "img": "mor-kirmizi-bileklik.jpg",
+  "nm": 1,
+  "m": [
+   "gold"
+  ],
+  "d": "Mor ve kırmızı inci boncuklar, uzatma zincirli bileklik.",
+  "k": "ELK0023MKBB",
+  "sold": false
+ },
+ {
+  "id": "erkek",
+  "n": "Yetişkin Erkek Bileklik",
+  "c": "bileklik",
+  "p": 250,
+  "img": "lacivert-gri-bileklik.jpg",
+  "nm": 1,
+  "m": [
+   "silver"
+  ],
+  "d": "Lacivert ve gri inci boncuklar, uzatma zincirli bileklik.",
+  "k": "ELK0021YEB",
+  "sold": false
+ },
+ {
+  "id": "yuzuk-pembe",
+  "n": "Açık Pembe ve Koyu Pembe Yüzük",
+  "c": "yuzuk",
+  "p": 150,
+  "img": "acik-koyu-pembe-yuzuk.jpg",
+  "nm": 1,
+  "m": [
+   "silver"
+  ],
+  "d": "Açık ve koyu pembe inci boncuklardan esnek yüzük.",
+  "k": "ELK0024APKPY",
+  "sold": false
+ },
+ {
+  "id": "yuzuk-lacivert",
+  "n": "Gri ve Lacivert Yüzük",
+  "c": "yuzuk",
+  "p": 150,
+  "img": "gri-lacivert-yuzuk.jpg",
+  "nm": 1,
+  "m": [
+   "silver"
+  ],
+  "d": "Gri ve lacivert inci boncuklardan esnek yüzük.",
+  "k": "ELK0025GLY",
+  "sold": false
+ },
+ {
+  "id": "yuzuk-kirmizi",
+  "n": "Kırmızı ve Açık Pembe Yüzük",
+  "c": "yuzuk",
+  "p": 150,
+  "img": "kirmizi-acik-pembe-yuzuk.jpg",
+  "nm": 1,
+  "m": [
+   "silver"
+  ],
+  "d": "Kırmızı ve açık pembe inci boncuklardan esnek yüzük.",
+  "k": "ELK0026KAPY",
+  "sold": false
+ },
+ {
+  "id": "yuzuk-gri",
+  "n": "Gri ve Kırmızı Boncuklu Yüzük",
+  "c": "yuzuk",
+  "p": 150,
+  "img": "gri-kirmizi-yuzuk.jpg",
+  "nm": 1,
+  "m": [
+   "silver"
+  ],
+  "d": "Gri ve kırmızı inci boncuklardan esnek yüzük.",
+  "k": "ELK0027GKBY",
+  "sold": false
+ },
+ {
+  "id": "inci-set",
+  "n": "İnci Kolye Seti",
+  "c": "set",
+  "p": 650,
+  "img": "inci-kolye-seti.jpg",
+  "nm": 1,
+  "m": [
+   "silver"
+  ],
+  "d": "İnci boncuklu kolye, küpe ve yüzükten oluşan takı seti. Kolye uzatma zincirli, gümüş renk. Parçalar birlikte fiyatlandırılmıştır.",
+  "k": "ELK004İKS",
+  "b": "Set",
+  "sold": false
+ },
+ {
+  "id": "mavi-set",
+  "n": "Mavi Beyaz Küpe ve Bileklik Seti",
+  "c": "set",
+  "p": 650,
+  "img": "mavi-beyaz-kupe-bileklik-seti.jpg",
+  "nm": 1,
+  "m": [
+   "silver"
+  ],
+  "d": "Mavi ve beyaz inci boncuklu bileklik ile küpeden oluşan set. Bileklik uzatma zincirli. Parçalar birlikte fiyatlandırılmıştır.",
+  "k": "ELK007MBKBS",
+  "b": "Set",
+  "sold": false
+ },
+ {
+  "id": "mor-pembe-set",
+  "n": "Mor ve Pembe Dönmeli Bileklik Küpe ve Kolye Seti",
+  "c": "set",
+  "p": 700,
+  "img": "mor-pembe-donmeli-set.jpg",
+  "nm": 1,
+  "m": [
+   "silver"
+  ],
+  "d": "Mor ve pembe inci boncuklu kolye, bileklik ve küpeden oluşan set. Kolye ve bileklik uzatma zincirli. Parçalar birlikte fiyatlandırılmıştır.",
+  "k": "ELK0015MPDBKKS",
+  "b": "Set",
+  "sold": false
+ },
+ {
+  "id": "tesbih",
+  "n": "Kadın 33'lük Tesbih",
+  "c": "tesbih",
+  "p": 250,
+  "img": "kadin-33luk-tesbih.jpg",
+  "nm": 1,
+  "m": [
+   "silver"
+  ],
+  "d": "Kırmızı inci boncuklar ve gümüş renk ara başlıklarla 33'lük tesbih.",
+  "k": "ELK001KT",
+  "sold": false
+ }
+]

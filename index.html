@@ -158,6 +158,9 @@ img,svg{display:block;max-width:100%}
 @media (hover:hover){.card .pic:hover svg{transform:scale(1.05)}}
 .badge{position:absolute;top:10px;left:10px;z-index:1;padding:5px 9px;border-radius:99px;background:rgba(255,253,250,.92);font-size:11px;font-weight:700;letter-spacing:.02em;pointer-events:none}
 .badge.hot{background:var(--berry);color:#fff}
+.badge.sold{background:#3b2f2f;color:#fff}
+.card.is-sold .pic img{filter:grayscale(.6);opacity:.7}
+.plus[disabled]{opacity:.35;cursor:not-allowed}
 .add{position:absolute;right:8px;top:calc(100% - 0px);transform:translateY(-100%);margin-top:-8px}
 .card .meta{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;padding:10px 2px 0}
 .card h3{font:600 15px/1.3 var(--sans);letter-spacing:0;min-width:0;overflow-wrap:anywhere}
@@ -691,10 +694,10 @@ html.soon .has-bar .demo-back{transform:none}
     var list = P.filter(function (x) { return cat === 'all' || x.c === cat; });
     $('#countTxt').textContent = SOON ? 'Çok yakında' : list.length + ' ürün';
     $('#grid').innerHTML = list.map(function (x, i) {
-      return '<article class="card" style="animation-delay:' + (i * 40) + 'ms">' +
-        '<div class="picbox">' + (SOON ? '<span class="badge">Yakında</span>' : x.b ? '<span class="badge' + (x.hot ? ' hot' : '') + '">' + x.b + '</span>' : '') +
+      return '<article class="card' + (x.sold ? ' is-sold' : '') + '" style="animation-delay:' + (i * 40) + 'ms">' +
+        '<div class="picbox">' + (SOON ? '<span class="badge">Yakında</span>' : x.sold ? '<span class="badge sold">Tükendi</span>' : x.b ? '<span class="badge' + (x.hot ? ' hot' : '') + '">' + x.b + '</span>' : '') +
         '<button class="pic" type="button" data-open="' + x.id + '" style="background:' + x.tint + '" aria-label="' + esc(x.n) + ' detayını aç">' + pic(x, x.m[0], 'E') + '</button>' +
-        '<button class="plus" type="button" data-add="' + x.id + '" aria-label="' + esc(x.n) + ' sepete ekle">' + PLUS + '</button></div>' +
+        '<button class="plus" type="button" data-add="' + x.id + '"' + (x.sold ? ' disabled' : '') + ' aria-label="' + esc(x.n) + ' sepete ekle">' + PLUS + '</button></div>' +
         '<div class="meta"><h3>' + esc(x.n) + (x.nm ? '' : '<span class="mat" role="img" aria-label="' + x.m.map(function (m) { return MET[m].n; }).join(', ') + '">' + x.m.map(function (m) { var c = MET[m].c; return '<i style="background:linear-gradient(135deg,' + c[0] + ',' + c[2] + ')"></i>'; }).join('') + '</span>') + '</h3><span class="price">' + (SOON ? '' : tl(x.p)) + '</span></div></article>';
     }).join('');
   }
@@ -708,6 +711,7 @@ html.soon .has-bar .demo-back{transform:none}
   function save() { try { localStorage.setItem('ey-taki-cart', JSON.stringify(cart)); } catch (e) {} }
   function key(i) { return i.id + '|' + i.m + '|' + (i.l || ''); }
   function add(id, m, l, qn) {
+    if (byId[id].sold) { toast(byId[id].n + ' şu an tükendi'); return; }
     var it = { id: id, m: m, l: l || '', q: qn || 1 }, k = key(it), ex = cart.filter(function (c) { return key(c) === k; })[0];
     if (ex) ex.q = Math.min(20, ex.q + it.q); else cart.push(it);
     save(); upd();
@@ -809,7 +813,8 @@ html.soon .has-bar .demo-back{transform:none}
     $('#dPic').innerHTML = pic(cur, dm, dl);
     $('#dQty').textContent = dq;
     $('#dPrice').textContent = SOON ? 'Yakında' : tl(cur.p);
-    $('#dAdd').textContent = SOON ? 'Çıkınca haber ver' : 'Sepete ekle · ' + tl(cur.p * dq);
+    $('#dAdd').textContent = SOON ? 'Çıkınca haber ver' : cur.sold ? 'Tükendi' : 'Sepete ekle · ' + tl(cur.p * dq);
+    $('#dAdd').disabled = !SOON && !!cur.sold;
     $('#dMetal').querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-m') === dm); });
     $('#dAsk').href = waUrl('Merhaba ' + BRAND + ', "' + cur.n + ' (' + (cur.nm ? 'ürün' : MET[dm].n) + (cur.letter ? ', harf: ' + dl : '') + ')" hakkında bilgi almak istiyorum. Stokta var mı?');
     $('#dAsk').target = '_blank'; $('#dAsk').rel = 'noopener';
@@ -835,6 +840,16 @@ html.soon .has-bar .demo-back{transform:none}
     if (o) openDetail(o.getAttribute('data-open'));
     else if (a) { var x = byId[a.getAttribute('data-add')]; if (x.letter) openDetail(x.id); else add(x.id, x.m[0], '', 1); }
   });
+
+  /* Panelden yönetilen ürün listesi: products.json gelirse onu kullan; gelmezse yukarıdaki liste kalır */
+  if (window.fetch) fetch('products.json?v=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (list) {
+    if (!Array.isArray(list)) return;
+    list = list.filter(function (x) { return x && x.id && x.n && x.c && typeof x.p === 'number'; });
+    if (!list.length) return;
+    P = list; byId = {};
+    P.forEach(function (x, i) { if (!x.m || !x.m.length || !MET[x.m[0]]) x.m = ['silver']; if (x.nm === undefined) x.nm = 1; if (!x.d) x.d = ''; x.tint = TINTS[i % TINTS.length]; byId[x.id] = x; });
+    cart = cart.filter(function (i) { return byId[i.id] && !byId[i.id].sold; }); save(); upd(); render();
+  }).catch(function () {});
 
   /* Uygulama olarak yükleme (PWA) */
   var dp = null, ua = navigator.userAgent, IOS = /iphone|ipad|ipod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);

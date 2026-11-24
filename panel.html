@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Luna Bijuteri — Ürün Paneli</title>
+<meta name="theme-color" content="#3b2f2f">
+<script>
+try{history.scrollRestoration='manual';if(location.hash)history.replaceState(null,'',location.pathname+location.search)}catch(e){}
+addEventListener('pageshow',function(){var h=document.documentElement,b=h.style.scrollBehavior;h.style.scrollBehavior='auto';scrollTo(0,0);h.style.scrollBehavior=b});
+</script>
+<style>
+:root{--bg:#faf6f2;--card:#fff;--ink:#2b2222;--mut:#7a6b66;--acc:#b0476b;--line:#eadfd8;--ok:#2e7d4f;--bad:#b3261e}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;overflow-wrap:anywhere;padding-bottom:40px}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;touch-action:manipulation}
+.wrap{width:min(720px,100% - 24px);margin-inline:auto}
+header{position:sticky;top:0;z-index:5;background:rgba(250,246,242,.96);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:10px;height:58px}
+header b{font-size:18px}
+.btn{border:0;border-radius:12px;padding:13px 18px;font-weight:700;background:var(--acc);color:#fff}
+.btn.sec{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1px var(--line)}
+.btn.sm{padding:9px 12px;font-size:14px;border-radius:10px}
+.btn[disabled]{opacity:.5}
+h2{font-size:20px;margin:22px 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px}
+label{display:block;font-size:13px;font-weight:700;color:var(--mut);margin:14px 0 6px}
+input,select,textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff;font-size:16px}
+textarea{min-height:80px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.photo{display:grid;place-items:center;aspect-ratio:4/5;max-width:220px;border:2px dashed var(--line);border-radius:14px;background:#fff center/cover no-repeat;color:var(--mut);font-size:14px;text-align:center;padding:10px}
+.photo.has{border-style:solid;color:transparent}
+.list{display:grid;gap:10px}
+.it{display:grid;grid-template-columns:64px 1fr;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px}
+.it img{width:64px;height:80px;object-fit:cover;border-radius:10px;background:#f1e8e2}
+.it h3{font-size:15px;line-height:1.3}
+.it p{font-size:13px;color:var(--mut)}
+.it .acts{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px}
+.it.sold{opacity:.65}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;background:#3b2f2f;color:#fff;margin-left:6px;vertical-align:middle}
+.msg{position:fixed;left:12px;right:12px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9;padding:14px 16px;border-radius:14px;background:#2b2222;color:#fff;font-weight:600;transform:translateY(140%);transition:transform .3s}
+.msg.on{transform:none}.msg.ok{background:var(--ok)}.msg.bad{background:var(--bad)}
+.hint{font-size:13px;color:var(--mut);margin-top:8px}
+.filter{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+.filter button{flex:0 0 auto;border:1px solid var(--line);background:#fff;border-radius:99px;padding:8px 12px;font-size:14px;font-weight:600}
+.filter button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<header><div class="wrap"><b>Luna · Ürün Paneli</b><button class="btn sm sec" id="out" hidden>Çıkış</button></div></header>
+
+<main class="wrap">
+  <!-- Giriş: panel anahtarı cihazda bir kez kaydedilir -->
+  <section id="login" hidden>
+    <h2>Panele giriş</h2>
+    <div class="card">
+      <label for="key">Panel anahtarı</label>
+      <input id="key" type="password" autocomplete="off" placeholder="Size verilen panel anahtarı">
+      <button class="btn" id="loginBtn" style="width:100%;margin-top:14px">Giriş yap</button>
+      <p class="hint">Anahtar sadece bu telefonda saklanır. Kurulumda bir kez girilir.</p>
+    </div>
+  </section>
+
+  <section id="app" hidden>
+    <h2 id="fTitle">Yeni ürün ekle</h2>
+    <form class="card" id="f" novalidate>
+      <label>Fotoğraf</label>
+      <label class="photo" id="ph" for="file" style="margin:0">Fotoğraf seçmek ya da çekmek için dokunun</label>
+      <input id="file" type="file" accept="image/*" hidden>
+      <label for="n">Ürün adı</label>
+      <input id="n" maxlength="70" placeholder="Örn. Pembe İnci Halka Küpe">
+      <div class="row">
+        <div><label for="p">Fiyat (TL)</label><input id="p" type="number" inputmode="numeric" min="0" step="1" placeholder="200"></div>
+        <div><label for="c">Kategori</label><select id="c"></select></div>
+      </div>
+      <div class="row">
+        <div><label for="m">Renk</label><select id="m"><option value="gold">Altın renk</option><option value="silver">Gümüş renk</option></select></div>
+        <div><label for="k">Stok kodu</label><input id="k" maxlength="30" placeholder="ELK0031"></div>
+      </div>
+      <label for="d">Açıklama</label>
+      <textarea id="d" maxlength="300" placeholder="Örn. Pembe inci boncuklardan halka küpe, gümüş renk kancalı. Fiyat çift içindir."></textarea>
+      <div style="display:flex;gap:10px;margin-top:16px">
+        <button class="btn" id="save" type="submit" style="flex:1">Kaydet</button>
+        <button class="btn sec" id="cancel" type="button" hidden>Vazgeç</button>
+      </div>
+      <p class="hint">Kaydettikten sonra ürün birkaç dakika içinde sitede görünür.</p>
+    </form>
+
+    <h2>Ürünler (<span id="cnt">0</span>)</h2>
+    <div class="filter" id="flt"></div>
+    <div class="list" id="list" style="margin-top:12px"></div>
+  </section>
+</main>
+<div class="msg" id="msg" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  var REPO = 'emreyukseltr/lunabijuteri', BR = 'main', API = 'https://api.github.com/repos/' + REPO + '/contents/';
+  var CATS = [['kupe', 'Küpe'], ['bileklik', 'Bileklik'], ['halhal', 'Hal Hal'], ['yuzuk', 'Yüzük'], ['set', 'Set'], ['tesbih', 'Tesbih']];
+  var CN = {}; CATS.forEach(function (c) { CN[c[0]] = c[1]; });
+  var $ = function (s) { return document.querySelector(s); };
+  var KEY = '', P = [], SHA = '', edit = null, blob = null, flt = 'all', busy = false;
+
+  function msg(t, kind, ms) { var m = $('#msg'); m.textContent = t; m.className = 'msg on ' + (kind || ''); clearTimeout(msg.t); msg.t = setTimeout(function () { m.className = 'msg'; }, ms || 3200); }
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function slug(s) { return s.toLocaleLowerCase('tr').replace(/ç/g, 'c').replace(/ğ/g, 'g').replace(/ı/g, 'i').replace(/ö/g, 'o').replace(/ş/g, 's').replace(/ü/g, 'u').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40) || 'urun'; }
+  function b64(str) { return btoa(unescape(encodeURIComponent(str))); }
+  function unb64(s) { return decodeURIComponent(escape(atob(s.replace(/\n/g, '')))); }
+
+  function gh(path, opt) {
+    opt = opt || {};
+    var h = { 'Accept': 'application/vnd.github+json', 'Authorization': 'Bearer ' + KEY };
+    if (opt.body) h['Content-Type'] = 'application/json';
+    return fetch(API + path + (opt.method ? '' : '?ref=' + BR + '&t=' + Date.now()), { method: opt.method || 'GET', headers: h, body: opt.body ? JSON.stringify(opt.body) : undefined, cache: 'no-store' })
+      .then(function (r) { if (r.status === 401 || r.status === 403) throw new Error('auth'); if (!r.ok) return r.text().then(function (t) { throw new Error(r.status + ' ' + t.slice(0, 120)); }); return r.json(); });
+  }
+  function load() {
+    return gh('products.json').then(function (j) { SHA = j.sha; P = JSON.parse(unb64(j.content)); draw(); });
+  }
+  function saveList(note) {
+    return gh('products.json', { method: 'PUT', body: { message: 'Panel: ' + note, content: b64(JSON.stringify(P, null, 1) + '\n'), sha: SHA, branch: BR } })
+      .then(function (r) { SHA = r.content.sha; });
+  }
+  /* Değişiklik sırasında başka bir cihazdan kayıt olduysa listeyi tazeleyip bir kez daha dene */
+  function commit(note, change) {
+    return load().then(function () { change(); return saveList(note); }).then(draw);
+  }
+
+  /* Fotoğrafı telefonda küçült: en uzun kenar 1400 px, JPEG */
+  function shrink(file) {
+    return new Promise(function (ok, no) {
+      var img = new Image(), u = URL.createObjectURL(file);
+      img.onload = function () {
+        var s = Math.min(1, 1400 / Math.max(img.width, img.height)), w = Math.round(img.width * s), h = Math.round(img.height * s);
+        var c = document.createElement('canvas'); c.width = w; c.height = h; c.getContext('2d').drawImage(img, 0, 0, w, h);
+        URL.revokeObjectURL(u); c.toBlob(function (b) { b ? ok(b) : no(new Error('foto')); }, 'image/jpeg', .85);
+      };
+      img.onerror = function () { no(new Error('foto')); }; img.src = u;
+    });
+  }
+  function blobB64(b) { return new Promise(function (ok) { var r = new FileReader(); r.onload = function () { ok(String(r.result).split(',')[1]); }; r.readAsDataURL(b); }); }
+
+  function draw() {
+    $('#cnt').textContent = P.length;
+    $('#flt').innerHTML = [['all', 'Tümü']].concat(CATS).map(function (c) { return '<button type="button" data-f="' + c[0] + '" aria-pressed="' + (flt === c[0]) + '">' + c[1] + '</button>'; }).join('');
+    $('#list').innerHTML = P.map(function (x, i) { return [x, i]; }).filter(function (a) { return flt === 'all' || a[0].c === flt; }).map(function (a) {
+      var x = a[0], i = a[1];
+      return '<div class="it' + (x.sold ? ' sold' : '') + '"><img src="img/' + esc(x.img) + '" alt="" loading="lazy"><div><h3>' + esc(x.n) + (x.sold ? '<span class="tag">Tükendi</span>' : '') + '</h3><p>' + (x.p || 0).toLocaleString('tr-TR') + ' TL · ' + esc(CN[x.c] || x.c) + (x.k ? ' · ' + esc(x.k) : '') + '</p></div>' +
+        '<div class="acts"><button class="btn sm sec" data-e="' + i + '">Düzenle</button><button class="btn sm sec" data-s="' + i + '">' + (x.sold ? 'Satışa aç' : 'Tükendi yap') + '</button>' +
+        (i > 0 ? '<button class="btn sm sec" data-u="' + i + '" aria-label="Yukarı taşı">↑</button>' : '') + '<button class="btn sm sec" data-x="' + i + '" style="color:var(--bad)">Sil</button></div></div>';
+    }).join('') || '<p class="hint">Bu kategoride ürün yok.</p>';
+  }
+
+  function resetForm() {
+    edit = null; blob = null; $('#f').reset(); $('#c').value = 'kupe'; $('#m').value = 'gold';
+    var ph = $('#ph'); ph.style.backgroundImage = ''; ph.classList.remove('has');
+    $('#fTitle').textContent = 'Yeni ürün ekle'; $('#save').textContent = 'Kaydet'; $('#cancel').hidden = true;
+  }
+  function fill(i) {
+    var x = P[i]; edit = x.id; blob = null;
+    $('#n').value = x.n; $('#p').value = x.p; $('#c').value = x.c; $('#m').value = (x.m && x.m[0]) || 'gold'; $('#k').value = x.k || ''; $('#d').value = x.d || '';
+    var ph = $('#ph'); ph.style.backgroundImage = 'url("img/' + x.img + '")'; ph.classList.add('has');
+    $('#fTitle').textContent = 'Ürünü düzenle'; $('#save').textContent = 'Değişiklikleri kaydet'; $('#cancel').hidden = false;
+    scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  function lock(on, t) { busy = on; $('#save').disabled = on; if (t) $('#save').textContent = t; }
+  function fail(e) {
+    lock(false); $('#save').textContent = edit ? 'Değişiklikleri kaydet' : 'Kaydet';
+    if (e && e.message === 'auth') { msg('Panel anahtarı geçersiz ya da süresi dolmuş. EY Studios ile iletişime geçin.', 'bad', 6000); return; }
+    msg('Kaydedilemedi, internet bağlantınızı kontrol edip tekrar deneyin.', 'bad', 5000);
+  }
+
+  $('#c').innerHTML = CATS.map(function (c) { return '<option value="' + c[0] + '">' + c[1] + '</option>'; }).join('');
+  $('#file').addEventListener('change', function () {
+    var f = this.files && this.files[0]; if (!f) return;
+    shrink(f).then(function (b) { blob = b; var ph = $('#ph'); ph.style.backgroundImage = 'url("' + URL.createObjectURL(b) + '")'; ph.classList.add('has'); })
+      .catch(function () { msg('Bu fotoğraf açılamadı, başka bir fotoğraf deneyin.', 'bad'); });
+  });
+  $('#cancel').addEventListener('click', resetForm);
+
+  $('#f').addEventListener('submit', function (e) {
+    e.preventDefault(); if (busy) return;
+    var n = $('#n').value.trim(), p = Math.round(+$('#p').value);
+    if (!n) return msg('Ürün adını yazın.', 'bad');
+    if (!(p > 0)) return msg('Fiyatı yazın.', 'bad');
+    if (!edit && !blob) return msg('Bir fotoğraf seçin.', 'bad');
+    var data = { n: n, p: p, c: $('#c').value, m: [$('#m').value], k: $('#k').value.trim(), d: $('#d').value.trim() };
+    if (!data.k) delete data.k;
+    lock(true, 'Kaydediliyor…');
+    var up = Promise.resolve(null);
+    if (blob) {
+      var name = slug(n) + '-' + Date.now().toString(36) + '.jpg';
+      up = blobB64(blob).then(function (c) { return gh('img/' + name, { method: 'PUT', body: { message: 'Panel: foto ' + name, content: c, branch: BR } }); }).then(function () { return name; });
+    }
+    up.then(function (img) {
+      var id = edit;
+      return commit(edit ? 'ürün düzenlendi: ' + n : 'yeni ürün: ' + n, function () {
+        if (id) { var x = P.filter(function (y) { return y.id === id; })[0]; if (!x) throw new Error('kayıp'); for (var k in data) x[k] = data[k]; if (!data.k) delete x.k; if (img) x.img = img; }
+        else { var nid = slug(n), j = 2; while (P.some(function (y) { return y.id === nid; })) nid = slug(n) + '-' + j++; P.unshift({ id: nid, n: data.n, c: data.c, p: data.p, img: img, nm: 1, m: data.m, d: data.d, k: data.k, sold: false }); if (!data.k) delete P[0].k; }
+      });
+    }).then(function () { lock(false); msg(edit ? 'Ürün güncellendi. Birkaç dakika içinde sitede görünür.' : 'Ürün eklendi. Birkaç dakika içinde sitede görünür.', 'ok', 4500); resetForm(); })
+      .catch(fail);
+  });
+
+  $('#flt').addEventListener('click', function (e) { var b = e.target.closest('[data-f]'); if (!b) return; flt = b.getAttribute('data-f'); draw(); });
+  $('#list').addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b || busy) return;
+    if (b.hasAttribute('data-e')) return fill(+b.getAttribute('data-e'));
+    var i, x;
+    if (b.hasAttribute('data-s')) { i = +b.getAttribute('data-s'); x = P[i]; var id = x.id, to = !x.sold;
+      busy = true; msg('Kaydediliyor…');
+      commit((to ? 'tükendi: ' : 'satışa açıldı: ') + x.n, function () { P.forEach(function (y) { if (y.id === id) y.sold = to; }); })
+        .then(function () { busy = false; msg(to ? 'Tükendi olarak işaretlendi.' : 'Tekrar satışa açıldı.', 'ok'); }).catch(function (er) { busy = false; fail(er); });
+      return; }
+    if (b.hasAttribute('data-u')) { i = +b.getAttribute('data-u'); var aId = P[i].id;
+      busy = true;
+      commit('sıra değişti', function () { var k = P.findIndex(function (y) { return y.id === aId; }); if (k > 0) { var t = P[k - 1]; P[k - 1] = P[k]; P[k] = t; } })
+        .then(function () { busy = false; }).catch(function (er) { busy = false; fail(er); });
+      return; }
+    if (b.hasAttribute('data-x')) { i = +b.getAttribute('data-x'); x = P[i];
+      if (!confirm('"' + x.n + '" silinsin mi? Bu işlem geri alınamaz.')) return;
+      var did = x.id; busy = true;
+      commit('silindi: ' + x.n, function () { P = P.filter(function (y) { return y.id !== did; }); })
+        .then(function () { busy = false; msg('Ürün silindi.', 'ok'); }).catch(function (er) { busy = false; fail(er); });
+    }
+  });
+
+  function start() {
+    $('#login').hidden = true; $('#app').hidden = false; $('#out').hidden = false; resetForm();
+    msg('Ürünler yükleniyor…');
+    load().then(function () { msg('Hazır.', 'ok', 1500); }).catch(function (e) {
+      if (e && e.message === 'auth') { try { localStorage.removeItem('luna-panel-key'); } catch (x) {} KEY = ''; showLogin(); msg('Panel anahtarı geçersiz.', 'bad', 5000); }
+      else msg('Ürünler yüklenemedi. İnternet bağlantınızı kontrol edin.', 'bad', 5000);
+    });
+  }
+  function showLogin() { $('#login').hidden = false; $('#app').hidden = true; $('#out').hidden = true; }
+  $('#loginBtn').addEventListener('click', function () {
+    var k = $('#key').value.trim(); if (!k) return msg('Anahtarı girin.', 'bad');
+    KEY = k; try { localStorage.setItem('luna-panel-key', k); } catch (e) {} $('#key').value = ''; start();
+  });
+  $('#out').addEventListener('click', function () { if (!confirm('Bu telefondan çıkış yapılsın mı? Tekrar girmek için anahtar gerekir.')) return; try { localStorage.removeItem('luna-panel-key'); } catch (e) {} KEY = ''; showLogin(); });
+
+  try { KEY = localStorage.getItem('luna-panel-key') || ''; } catch (e) {}
+  KEY ? start() : showLogin();
+})();
+</script>
+</body>
+</html>
